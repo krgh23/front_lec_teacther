@@ -130,7 +130,34 @@
   <button type="button">버튼</button>
   <br>
 
-  
+  <!--
+    폼
+    1. 서버 측으로 입력 데이터를 서브밋할 때 반드시 필요하다.
+    2. form 태그 내부에 입력 요소와 서브밋 버튼을 함께 만든다.
+    3. 주요 속성
+      1) action  : 서버의 경로를 작성한다.
+      2) method  : 요청 메소드를 작성한다. (get 또는 post, 디폴트는 get)
+      3) enctype : 요청 Content-Type을 작성한다. (MIME 유형)
+        (1) application/x-www-form-urlencoded : 디폴트, 일반 입력 요소인 경우
+        (2) multipart/form-data               : <input type="file"> 요소가 있는 경우
+  -->
+  <form action="/somewhere"
+        method="get"
+        enctype="application/x-www-form-urlencoded">
+    <input type="text" name="name" placeholder="이름">
+    <br>
+    <input type="number" name="age" placeholder="나이">
+    <br>
+    <button type="submit">전송</button>
+  </form>
+  <br>
+
+  <!-- 네이버 검색 -->
+  <form action="https://search.naver.com/search.naver"
+        method="get">
+    <input type="text" name="query">
+    <button type="submit">네이버검색</button>
+  </form>
 
 </body>
 </html>
