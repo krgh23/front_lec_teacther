@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>form</title>
+</head>
+<body>
+  
+  <!--
+    입력란
+    1. input 태그를 의미한다.
+    2. 일반 텍스트, 숫자, 이메일, URL, 날짜, 시간 등 여러 가지 데이터를 입력할 수 있다.
+    3. 주요 속성
+      1) type        : 입력할 데이터의 종류를 의미한다. (디폴트 : text)
+      2) name        : 입력란의 이름을 의미한다.
+      3) value       : 입력한 데이터를 의미한다.
+      4) readonly    : 읽기 전용 태그로 만든다.
+      5) required    : 필수 입력을 의미한다.
+      6) disabled    : 사용 불가능한 태그로 만든다.
+      7) placeholder : 입력 안내 메시지를 의미한다.
+    4. 인라인 요소이다.
+  -->
+  <input type="text" placeholder="일반 텍스트">
+  <br>
+  <input type="password" placeholder="비밀번호">
+  <br>
+  <input type="number" placeholder="숫자" min="0" max="10">
+  <br>
+  <input type="email" placeholder="이메일">
+  <br>
+  <input type="url" placeholder="웹 주소">
+  <br>
+  <input type="date">
+  <br>
+  <input type="time">
+  <br>
+  <input type="file" multiple>
+  <br>
+  <input type="checkbox">
+  <br>
+  <input type="radio">
+  <br>
+
+  <!-- checkbox : 다중 선택 -->
+  <input type="checkbox" name="hobbies" value="run">달리기
+  <input type="checkbox" name="hobbies" value="swim">수영
+  <br>
+  <input type="checkbox" name="run">달리기
+  <input type="checkbox" name="swim">수영
+  <br>
+
+  <!-- radio : 단일 선택 (동일한 name을 가져야 한다.) -->
+  <input type="radio" name="gender" value="man" checked>남자
+  <input type="radio" name="gender" value="woman">여자
+  <br>
+
+</body>
+</html>
