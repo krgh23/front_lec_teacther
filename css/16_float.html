@@ -94,7 +94,36 @@
   <div class="line-break"></div>
   <div class="lbl-wrap"><label for="pw">비밀번호</label></div>
   <div class="inp-wrap"><input type="password" id="pw"></div>
+  <div class="line-break"></div>
 
+  <hr>
+
+  <style>
+    .gnb {
+      list-style-type: none;  /* 글머리기호 없애기 */
+      padding: 0;
+      margin: 0 auto;
+      width: 500px;
+    }
+    .gnb > li {
+      box-sizing: content-box;  /* 크기 : 내용 + padding + border */
+      float: left;
+      padding: 10px;
+      border: 1px solid gray;
+      text-align: center;
+    }
+    .content {
+      clear: left;
+    }
+  </style>
+  <ul class="gnb">
+    <li>정치</li>
+    <li>경제</li>
+    <li>사회</li>
+    <li>생활/문화</li>
+    <li>IT/과학</li>
+  </ul>
+  <div class="content">content</div>
 
 </body>
 </html>
