@@ -48,6 +48,7 @@
   document.write(`<div>장르 : ${movie.info.genre}</div>`);
   document.write(`<div>러닝타임 : ${movie.info.runningTime}</div>`);
 </script>
+<hr>
 
 <!--
     객체 프로퍼티(속성, property)
@@ -55,6 +56,19 @@
     2. 동적 프로퍼티 생성을 지원한다.
     3. delete 연산자를 이용해서 객체의 특정 프로퍼티를 삭제할 수 있다.
 -->
+<h4>객체 프로퍼티</h4>
+<script>
+  // 비어 있는 객체
+  let car = {}
+  // 동적 프로퍼티 추가
+  car.maker = 'bmw';
+  car.model = 'x5';
+  // 프로퍼티 삭제
+  delete car.model;
+  document.write(`<div>제조사 : ${car.maker}</div>`);
+  document.write(`<div>모델명 : ${car.model}</div>`);
+</script>
+<hr>
 
 <!--
     for in 문
@@ -67,6 +81,21 @@
         본문
       }
 -->
+<h4>for in 문</h4>
+<script>
+  let book = {
+    title: '채식주의자',
+    author: '한강',
+    price: 15000,
+  }
+  for(let prop in book) {
+    document.write(`<div>확인 불가 : ${book.prop}</div>`);
+  }
+  for(let prop in book) {  // prop 에 전달되는 값은 'title', 'author', 'price' 이다.
+    document.write(`<div>확인 가능 : ${book[prop]}</div>`);
+  }
+</script>
+<hr>
 
 <!--
     구조 분해 할당 (Destructuring Assignment)
@@ -76,9 +105,61 @@
     4. 형식
       { 변수1, 변수2, ... } = 객체
 -->
+<h4>구조 분해 할당</h4>
+<script>
+
+  let person = {
+    name: 'jessica',
+    age: 30,
+    isMarried: false,
+    contacts: ['010-1111-1111', '02-222-2222'],
+  }
+  let { name, isMarried } = person;
+  document.write(`<div>이름 : ${name}</div>`);
+  document.write(`<div>${isMarried ? '기혼' : '미혼'}</div>`);
+
+  // 새로운 변수 이름으로 재할당하기
+  let qna = {
+    q: 'What is the capital of Korea?',
+    a: 'Seoul',
+  }
+  let { q: question, a: answer } = qna;  // 프로퍼티 q 값을 변수 q 로 받아온 뒤 변수명을 question 으로 바꾼다.
+  document.write(`<div>${question} ${answer}</div>`);
+
+</script>
+<hr>
+
+<!-- 문제. 링크 메뉴 만들기 -->
+<h4>링크 메뉴 만들기</h4>
+<script>
+  /*
+    목표)
+    <div><a target="_blank" href="https://www.naver.com/">네이버</a></div>
+    <div><a target="_blank" href="https://www.google.com/">구글</a></div>
+    <div><a target="_blank" href="https://www.kakao.com/">카카오</a></div>
+  */
+  const sites = [
+    {
+      name: '네이버',
+      url: 'https://www.naver.com/'
+    },
+    {
+      name: '구글',
+      url: 'https://www.google.com/'
+    },
+    {
+      name: '카카오',
+      url: 'https://www.kakao.com/'
+    },
+  ]
+  for(const site of sites) {
+    document.write(`<div><a target="_blank" href="${site.url}">${site.name}</a></div>`);
+  }
+</script>
+<hr>
 
 <!-- 문제. <a> 태그와 <img> 태그 넣기 -->
-<h1>&lt;a&gt; 태그와 &lt;img&gt; 태그 넣기</h1>
+<h4>&lt;a&gt; 태그와 &lt;img&gt; 태그 넣기</h4>
 <script>
   /*
     목표)
@@ -87,7 +168,21 @@
       <li><a href="https://www.naver.com/"><img src="../assets/images/logo_naver.png" width="192px"></a></li>
     </ul>
   */
-
+  const portals = [
+    {
+      url: 'https://www.google.com/',
+      logo: 'logo_google.png',
+    },
+    {
+      url: 'https://www.naver.com/',
+      logo: 'logo_naver.png',
+    },
+  ]
+  document.write('<ul>');
+  for(const portal of portals) {
+    document.write(`<li><a href="${portal.url}"><img src="../assets/images/${portal.logo}" width="192px"></a></li>`);
+  }
+  document.write('</ul>');
 </script>
 <hr>
 
