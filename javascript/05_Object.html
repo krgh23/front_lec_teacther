@@ -23,6 +23,31 @@
       1) 객체.속성
       2) 객체['속성']
 -->
+<h4>객체</h4>
+<script>
+  let movie = {
+    title: '노트북',
+    director: '닉 카사베츠',
+    year: 2004,
+    actors: ['라이언 고슬링', '레이첼 맥아담스'],
+    info: {
+      nation: '미국',
+      genre: '멜로/로맨스',
+      runningTime: 123
+    }
+  }
+  document.write(`<div>제목 : ${movie.title}</div>`);
+  document.write(`<div>감독 : ${movie['director']}</div>`);
+  document.write(`<div>제작년도 : ${movie.year}</div>`);
+  document.write(`<div>배우 : `);
+  for(let i = 0; i < movie.actors.length; i++) {
+    document.write(`${movie.actors[i]}, `);
+  }
+  document.write(`</div>`);
+  document.write(`<div>제작국가 : ${movie.info.nation}</div>`);
+  document.write(`<div>장르 : ${movie.info.genre}</div>`);
+  document.write(`<div>러닝타임 : ${movie.info.runningTime}</div>`);
+</script>
 
 <!--
     객체 프로퍼티(속성, property)
