@@ -348,6 +348,26 @@
       boolean
   */
 
+  function checkWeight(weight) {
+    /*
+    if(weight >= 90) {
+      return false;
+    } else if(weight >= 40) {
+      return true;
+    } else {
+      return confirm('부모님의 동의가 필요합니다. 동의하시면 확인 아니면 취소를 눌러주세요.');
+    }
+    */
+    return weight >= 90 ? false : weight >= 40 ? true : confirm('부모님의 동의가 필요합니다. 동의하시면 확인 아니면 취소를 눌러주세요.');
+  }
+
+  weight = prompt('몸무게를 입력하세요.');
+  if(checkWeight(weight)) {
+    document.write('<div>놀이기구 탑승이 가능합니다.</div>');
+  } else {
+    document.write('<div>놀이기구 탑승이 거절되었습니다.</div>');
+  }
+
 </script>
 <hr>
 
@@ -360,12 +380,23 @@
     repeatDo() 함수
     1. 기능
       첫 번째 인자로 전달한 함수를 두 번째 인자로 전달한 횟수만큼 반복 수행하는 함수
-    1. 인자
+    2. 인자
       1) 실행할 함수
       2) 함수를 반복할 횟수
-    2. 반환
+    3. 반환
       없음
   */
+
+  // 함수 선언
+  function repeatDo(fnSub, count) {
+    for(let n = 0; n < count; n++)
+      fnSub();
+  }
+
+  // 함수 호출
+  repeatDo(function() {
+    document.write('<div>Do Something!</div>');
+  }, 3);
 
 </script>
 <hr>
@@ -386,7 +417,21 @@
     3. 반환
       연산 수행 결과 값
   */
+  function add(a, b) { return a + b; }
+  function subtract(a, b) { return a - b; }
+  function multiply(a, b) { return a * b; }
+  function divide(a, b) { return a / b; }
 
+  function calculate(fnSub, a, b) {
+    return fnSub(a, b);
+  }
+
+  const value1 = 5;
+  const value2 = 2;
+  document.write(`<div>${value1} + ${value2} = ${calculate(add, value1, value2)}</div>`);
+  document.write(`<div>${value1} - ${value2} = ${calculate(subtract, value1, value2)}</div>`);
+  document.write(`<div>${value1} * ${value2} = ${calculate(multiply, value1, value2)}</div>`);
+  document.write(`<div>${value1} / ${value2} = ${calculate(divide, value1, value2)}</div>`);
 </script>
 <hr>
 
