@@ -142,9 +142,29 @@
     .filter((element, i) => i % 2 === 0)  // 인덱스를 2로 나눈 나머지가 0인 요소(인덱스가 짝수)만 모아서 배열로 반환
     .forEach(element => document.write(`<div>${element}</div>`));
 
+  // Array.prototype.entries() : 인덱스/요소를 쌍으로 가진 새로운 배열 반복자를 반환
+  var itr = months.entries();
+  console.log(itr);
+  console.log(itr.next());  // { done: false, value: [0, 'Jan'] }
+  console.log(itr.next());  // { done: false, value: [1, 'Feb'] }
+  console.log(itr.next());
+  console.log(itr.next());
+  console.log(itr.next());
+  console.log(itr.next());  // { done: true, value: undefined }
+
+  // next() 메소드와 while 문
+  var itr = months.entries();  // 반복자는 1회용이라서 다 쓰면 다시 생성해야 한다.
+  while( (obj = itr.next()).done === false ) {
+    console.log(obj.value);
+  }
+
+  // for of 문
+  for(const [i, element] of months.entries()) {
+    console.log(i, element);
+  }
+
 </script>
-
-
+<hr>
 
 
 
@@ -161,6 +181,12 @@
       없음
   */
 
+  const displayImage = (images) => {
+    images.forEach(image => document.write(`<img src="../assets/images/${image}" width="198px">`));
+  }
+
+  displayImage(['animal10.jpg', 'flower3.jpg', 'nature1.jpg']);
+
 </script>
 <hr>
 
@@ -170,7 +196,7 @@
 <h4>print() 함수</h4>
 <script>
   /*
-    displayImage() 함수
+    print() 함수
     1. 기능
       전달된 인자가 배열이면 forEach()를 이용한 순회 출력 아니면 그냥 출력하는 함수
     2. 인자
@@ -178,6 +204,17 @@
     3. 반환
       없음
   */
+
+  const print = (param) => {
+    if(Array.isArray(param)) {
+      param.forEach(element => document.write(element + ', '));
+    } else {
+      document.write(param);
+    }
+  }
+
+  print([1, 2, 3]);
+  print('hello');
   
 </script>
 <hr>
