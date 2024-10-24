@@ -56,7 +56,18 @@
   document.write(`<div>반올림 : ${Math.round(value)}</div>`);
   document.write(`<div>절사   : ${Math.trunc(value)}</div>`);
 
+  /*
+      0.0 <= Math.random()                      < 1.0
+      0.0 <= Math.random() * 10                 < 10.0
+        0 <= Math.floor(Math.random() * 10)     < 10
+        1 <= Math.floor(Math.random() * 10 + 1) < 11
+  */
+  let lotto = Math.floor(Math.random() * 45 + 1);  // 1부터 45개 난수
+  document.write(`<div>${lotto}</div>`);
+
 </script>
+<hr>
+
 
 
 <!-- 문제1. getRandomDouble() 함수 구현하기 -->
@@ -72,6 +83,15 @@
     3. 반환
       최솟값과 최댓값 사이의 임의의 실수 난수
   */
+  
+  /*
+    0.0 <= Math.random()                     < 1.0
+    0.0 <= Math.random() * 2                 < 2.0
+    3.0 <= Math.random() * 2 + 3             < 5.0
+    min <= Math.random() * (max - min) + min < max
+  */
+  const getRandomDouble = (min, max) => Math.random() * (max - min) + min;
+  document.write(`<div>${getRandomDouble(3, 5)}</div>`);
 
 </script>
 <hr>
@@ -91,7 +111,9 @@
     3. 반환
       최솟값과 최댓값 사이의 임의의 정수 난수
   */
-  
+  const getRandomInt = (min, max) => Math.floor(Math.random() * (max - min) + min);
+  document.write(`<div>${getRandomInt(3, 5)}</div>`);
+
 </script>
 <hr>
 
@@ -111,6 +133,9 @@
       최솟값과 최댓값 사이의 임의의 정수 난수
   */
   
+  const getRandomIntInclude = (min, max) => Math.floor(Math.random() * (max - min + 1) + min);
+  document.write(`<div>${getRandomIntInclude(3, 5)}</div>`);
+
 </script>
 <hr>
 
