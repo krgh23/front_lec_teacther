@@ -335,6 +335,28 @@
 </script>
 <hr>
 
+<h4>화살표 함수 다루기</h4>
+<script>
+
+  // 인자x, 반환x
+  const fnArgRet1 = () => document.write('<div>fnArgRet1</div>');  // 본문 실행 코드가 1개이면 중괄호 {} 생략
+  fnArgRet1();
+
+  // 인자o, 반환x
+  const fnArgRet2 = param => document.write(`<div>fnArgRet2 : ${param}</div>`);  // 단일 매개변수이면 소괄호 () 생략
+  fnArgRet2(10);
+
+  // 인자x, 반환o
+  const fnArgRet3 = () => 'hello';  // 함수 본문이 return 뿐이면 return 문 생략
+  document.write(`<div>fnArgRet3 : ${fnArgRet3()}</div>`);
+
+  // 인자o, 반환o
+  const fnArgRet4 = param => param + 1;
+  document.write(`<div>fnArgRet4 : ${fnArgRet4(10)}</div>`);
+
+</script>
+<hr>
+
 <!-- 문제1. checkWeight() 함수 구현하기 -->
 <h4>checkWeight() 함수</h4>
 <script>
