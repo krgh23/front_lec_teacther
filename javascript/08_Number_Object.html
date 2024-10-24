@@ -51,6 +51,28 @@
       → 소수점 뒤에 나타날 자릿수, 0 ~ 20 사이 값을 가짐, 기본값은 0
 -->
 
+<h4>Number 내장 객체</h4>
+<script>
+
+  let input = Number(prompt('값을 입력하세요.'));  // 프롬프트로 입력된 string 데이터를 number 타입으로 변환
+  document.write(`<div>입력 데이터 타입 : ${typeof input}</div>`);
+  document.write(`<div>입력 데이터 : ${input}</div>`);
+
+  // Number.isNaN() : NaN 이면 true
+  let variable = 'string';
+  document.write(`<div>${Number.isNaN(variable / 1)}</div>`);
+
+  // Number.parseInt() : 전달된 문자열을 정수로 변환해서 반환
+  let iNum = Number.parseInt('10.5');
+  document.write(`<div>${typeof iNum}, ${iNum}</div>`);
+    
+  // Number.parseFloat() : 전달된 문자열을 실수로 변환해서 반환
+  let fNum = Number.parseFloat('15');
+  document.write(`<div>${typeof fNum}, ${fNum}</div>`);
+
+</script>
+<hr>
+
 
 
 <!-- 문제. getTotal() 함수 구현하기 -->
@@ -65,6 +87,19 @@
     3. 반환
       배열에 포함된 숫자만 모두 더한 값
   */
+
+  const getTotal = (ary) => {
+    let total = 0;
+    ary.forEach(element => {
+      if(Number.isNaN(element / 1) === false) {  // if(!Number.isNaN(element / 1))
+        total += Number.parseInt(element);
+      }
+    });
+    return total;
+  }
+
+  const ary = ['hello', 'world', 10, 20, 30, 40, { cpu: 'i7' }, () => {}, ]
+  document.write(`<div>총 합 : ${getTotal(ary)}</div>`);
 
 </script>
 <hr>
