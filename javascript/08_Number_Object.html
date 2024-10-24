@@ -91,14 +91,14 @@
   const getTotal = (ary) => {
     let total = 0;
     ary.forEach(element => {
-      if(Number.isNaN(element / 1) === false) {  // if(!Number.isNaN(element / 1))
+      if(typeof element !== 'boolean' && Number.isNaN(element / 1) === false) {  // if(!Number.isNaN(element / 1))
         total += Number.parseInt(element);
       }
     });
     return total;
   }
 
-  const ary = ['hello', 'world', 10, 20, 30, 40, { cpu: 'i7' }, () => {}, ]
+  const ary = ['hello', 'world', 10, 20, 30, 40, { cpu: 'i7' }, true, false, () => {}, ]
   document.write(`<div>총 합 : ${getTotal(ary)}</div>`);
 
 </script>
