@@ -94,7 +94,53 @@
         → 호출 문자열의 시작과 끝에서 공백이 제거된 새로운 문자열을 반환
         → 한쪽 끝의 공백만 제거하려면 trimStart() 나 trimEnd() 를 사용
 -->
+<h4>String 내장 객체</h4>
+<script>
 
+  const str = 'JavaScript';
+
+  document.write(`<div>길이 : ${str.length}</div>`);
+
+  document.write(`<div>첫 글자 : ${str.at(0)}</div>`);
+  document.write(`<div>첫 글자 : ${str.charAt(0)}</div>`);
+  document.write(`<div>마지막 글자 : ${str.at(-1)}</div>`);
+  document.write(`<div>마지막 글자 : ${str.charAt(str.length - 1)}</div>`);
+
+  document.write(`<div>첫 번째 소문자 a 의 인덱스 : ${str.indexOf('a')}</div>`);
+  document.write(`<div>마지막  소문자 a 의 인덱스 : ${str.lastIndexOf('a')}</div>`);
+  
+  if(str.startsWith('Java')) {
+    document.write('<div>Java로 시작합니다.</div>');
+  }
+  if(str.endsWith('Script')) { 
+    document.write('<div>Script로 끝납니다.</div>');
+  }
+  
+  const regUpper = /[A-Z]/g;  // 대문자 정규식
+  document.write(`<div>${str.match(regUpper)}</div>`);  // 대문자를 모두 찾아서 배열로 반환
+  document.write(`<div>${str.search(regUpper)}</div>`); // 첫 번째 대문자의 인덱스를 반환
+  
+  document.write(`<div>${str.padStart(15, '*')}</div>`);  // str 의 길이가 15가 되도록 * 를 왼쪽에 채우시오.
+  document.write(`<div>${str.padEnd(15, '*')}</div>`);    // str 의 길이가 15가 되도록 * 를 오른쪽에 채우시오.
+  
+  document.write(`<div>${str.replace('a', 'A')}</div>`);     // 문자열 'a'는 첫 번째 항목만 'A'로 바뀜
+  document.write(`<div>${str.replaceAll('a', 'A')}</div>`);  // 모든 'a'가 'A'로 바뀜
+  
+  document.write(`<div>${str.replace(/[A-Z]/g, 'A')}</div>`);     // 모든 대문자가 'A'로 바뀜
+  document.write(`<div>${str.replaceAll(/[A-Z]/g, 'A')}</div>`);  // 모든 대문자가 'A'로 바뀜
+
+  document.write(`<div>${str.slice(4)}</div>`);         // 인덱스 4부터 끝까지
+  document.write(`<div>${str.slice(0, 4)}</div>`);      // 인덱스 0부터 인덱스 3까지
+  document.write(`<div>${str.substring(4)}</div>`);     // 인덱스 4부터 끝까지
+  document.write(`<div>${str.substring(0, 4)}</div>`);  // 인덱스 0부터 인덱스 3까지
+  document.write(`<div>${str.substr(4)}</div>`);     // 인덱스 4부터 끝까지 (deprecated)
+  document.write(`<div>${str.substr(0, 4)}</div>`);  // 인덱스 0부터 4글자  (deprecated)
+
+  document.write(`<div>${str.slice(-6)}</div>`);        // 인덱스 -6부터(뒤에서 6번째 글자) 끝까지
+  document.write(`<div>${str.slice(-10, -6)}</div>`);   // 인덱스 -10부터 인덱스 -7까지
+
+
+</script>
 
 
 <!-- 문제1. addCarMaker() 함수 구현하기 -->

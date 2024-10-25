@@ -106,6 +106,15 @@
       없음
   */
 
+  const printObject = (strJson) => {
+    const objJson = JSON.parse(strJson);
+    for(const prop in objJson) {
+      document.write(`<div>${prop}: ${objJson[prop]}</div>`);
+    }
+  }
+
+  printObject('{"name": "jessica", "age": 30, "isMarried": false}');
+
 </script>
 <hr>
 
