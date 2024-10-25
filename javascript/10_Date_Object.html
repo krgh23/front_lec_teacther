@@ -70,7 +70,7 @@
   // 단위 추출
   const now = new Date();
   const year = now.getFullYear();
-  const month = now.getMonth();
+  const month = now.getMonth() + 1;
   const day = now.getDate();
   const dayNo = now.getDay();
   const hour = now.getHours();
@@ -80,14 +80,14 @@
   
   // 2024-10-25 금요일 오전 9:55:30.456 만들기
   const result = year + '-' + 
-                (month + 1) + '-' + 
-                day + ' ' + 
+                (month < 10 ? '0' + month : month) + '-' + 
+                (day < 10 ? '0' + day : day) + ' ' + 
                 ['일', '월', '화', '수', '목', '금', '토'][dayNo] + '요일 ' +
                 (hour >= 12 ? '오후' : '오전') + ' ' +
                 (hour <= 12 ? hour : hour % 12) + ':' + 
-                (minute < 10 ? '0' + minute : minute) + ':' 
-                + second + '.' + 
-                millis;
+                (minute < 10 ? '0' + minute : minute) + ':' +
+                (second < 10 ? '0' + second : second) + '.' + 
+                (millis < 10 ? '00' + millis : millis < 100 ? '0' + millis : millis);
   document.write(`<div>${result}</div>`);
   
   // 타임스탬프
@@ -111,6 +111,24 @@
     3. 반환
       함수를 수행하는데 걸린 시간(밀리초)
   */
+
+  const stopWatch = (callback) => {
+    const beginTime = Date.now();
+    callback();
+    const endTime = Date.now();
+    return endTime - beginTime;
+  }
+
+  const justDoIt = () => {
+    let total = 0;
+    for(let i = 0; i < 1000000; i++) {
+      total += i;
+    }
+    document.write(`<div>${total}</div>`);
+  }
+
+  const dueTime = stopWatch(justDoIt);
+  document.write(`<div>소요시간 : ${dueTime}millis</div>`);
 
 </script>
 <hr>
