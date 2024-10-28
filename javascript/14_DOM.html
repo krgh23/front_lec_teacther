@@ -126,6 +126,32 @@
     forEach()       | No                       | Yes 
     ----------------------------------------------------------------------------------
 -->
+<h4>DOM 객체 반환 메소드</h4>
+<div id="box1" class="primary-box">box1</div>
+<div id="box2" class="primary-box">box2</div>
+<div id="box3" class="primary-box">box3</div>
+<script>
+
+  /* HTMLElement 객체 반환 */
+  const box1 = document.getElementById('box1');
+  console.log(box1);
+  const box2 = document.querySelector('#box2');
+  console.log(box2);
+  const boxes = document.querySelector('.primary-box');  // 동일한 선택자가 여럿 있는 경우 첫 번째 요소만 반환된다.
+  console.log(boxes);
+
+  /* HTMLCollection 객체 반환 */
+  const dives = document.getElementsByTagName('div');
+  console.log(dives);
+  const primaryBox = document.getElementsByClassName('primary-box');
+  console.log(primaryBox);
+
+  /* NodeList 객체 반환 */
+  const primaryBoxes = document.querySelectorAll('.primary-box');
+  console.log(primaryBoxes);
+
+</script>
+<hr>
 
 <!--
     1. 기존 DOM 객체 변경
@@ -136,6 +162,14 @@
       1) 요소   : Element.innerHTML += 'HTML';
       2) 텍스트 : Node.textContent += 'TEXT';
 -->
+<h4>DOM 객체 조작하기</h4>
+<ul id="four-seasons">
+  <li>이 곳에 사계절을 넣으세요</li>
+</ul>
+<script>
+  const fourSeasons = document.getElementById('four-seasons');
+  fourSeasons.innerHTML = '<li>봄</li><li>여름</li><li>가을</li><li>겨울</li>';
+</script>
 
 <!--
     CSS 적용
@@ -205,11 +239,31 @@
     1. 기능
       국어, 영어, 수학 점수를 읽은 뒤 평균 점수와 학점을 출력하는 함수
     2. 인자
-      국어, 영어, 수학 점수를 읽은 뒤 배열로 만들어서 반환하는 getScores() 함수
+      국어, 영어, 수학 점수를 읽은 뒤 배열로 만들어서 반환하는 getScores() 함수 호출 결과
     3. 반환
       없음
   */
-
+  const getScores = () => {
+    return [
+      Number(document.getElementById('kor').textContent),
+      Number(document.getElementById('eng').textContent),
+      Number(document.getElementById('math').textContent),
+    ]
+  }
+  const printScores = (ary) => {
+    // 구조 분해 할당
+    const [kor, eng, math] = ary;  // kor = ary[0], eng = ary[1], math = ary[2]
+    const average = (kor + eng + math) / 3;
+    let grade;
+    if(average >= 90)      grade = 'A';
+    else if(average >= 80) grade = 'B';
+    else if(average >= 70) grade = 'C';
+    else if(average >= 60) grade = 'D';
+    else                   grade = 'F';
+    document.getElementById('average').textContent = average;
+    document.getElementById('grade').textContent = grade;
+  }
+  printScores(getScores());
 </script>
 <hr>
 
