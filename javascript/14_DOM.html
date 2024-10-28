@@ -562,6 +562,24 @@
       2) 임의의 rgba(red, green, blue, opacity) 색상 함수를 만들어 반환하는 getRandomRgba() 함수를 만들어서 사용
   */
 
+  // min <= random < min
+  const getRandomInt = (min, max) => {
+    return Math.random() * (max - min) + min;
+  }
+
+  const imageCover = () => {
+    const cover = document.getElementById('cover');
+    setInterval(() => {
+      cover.style.backgroundColor = 'rgba(' +
+                                      getRandomInt(0, 256) + ', ' +
+                                      getRandomInt(0, 256) + ', ' +
+                                      getRandomInt(0, 256) + ', ' +
+                                      Math.random() + ')';
+    }, 2000);
+  }
+
+  imageCover();
+
 </script>
 <hr>
 
