@@ -479,7 +479,7 @@
 </style>
 <script>
   /*
-    displayDday() 함수
+    changeImage() 함수
     1. 기능
       1) 5초마다 screen-saver 의 배경 이미지를 변경하는 함수
       2) 배경 이미지는 animal1.jpg ~ animal10.jpg 중 하나를 사용함
@@ -490,6 +490,21 @@
     4. Hint
       1 ~ 10 사이의 정수 난수를 구하는 getRandomIntInclusive() 함수를 함께 사용
   */
+
+  // getRandomIntInclusive 함수
+  const getRandomIntInclusive = (min, max) => {
+    return Math.floor(Math.random() * (max - min + 1) + min);
+  }
+
+  // changeImage
+  const changeImage = () => {
+    const screenSaver = document.getElementById('screen-saver');
+    setInterval(() => {
+      screenSaver.style.backgroundImage = `url(../assets/images/animal${getRandomIntInclusive(1, 10)}.jpg)`;
+    }, 5000);
+  }
+  
+  changeImage();
 
 </script>
 <hr>
