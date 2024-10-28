@@ -170,6 +170,7 @@
   const fourSeasons = document.getElementById('four-seasons');
   fourSeasons.innerHTML = '<li>봄</li><li>여름</li><li>가을</li><li>겨울</li>';
 </script>
+<hr>
 
 <!--
     CSS 적용
@@ -182,6 +183,18 @@
       1) 마침표 : HTMLElement.style.fontSize = '12px';
       2) 대괄호 : HTMLElement.style['font-size'] = '12px';
 -->
+<h4>CSS 적용하기</h4>
+<div>
+  <a id="google-link" href="https://www.google.com/">Google</a>
+</div>
+<script>
+  const googleLink = document.getElementById('google-link');
+  googleLink.style.color = '#080808';
+  googleLink.style.fontSize = '24px';
+  googleLink.style['font-weight'] = '700';
+  googleLink.style['text-decoration'] = 'none';
+</script>
+<hr>
 
 <!--
     HTML Attribute
@@ -194,6 +207,32 @@
       2) 수정하기 : setAttribute(attribute, value)
       3) 삭제하기 : removeAttribute(attribute)
 -->
+<h4>Attribute 속성</h4>
+<div>
+  <!-- type="text" 는 생략이 가능한 디폴트 속성 -->
+  <input name="id" id="id" class="inp" readonly>
+</div>
+<script>
+  
+  const id = document.getElementById('id');
+  
+  // attribute 가져오기
+  console.log('type     : ', id.getAttribute('type'));      // type 속성이 없으므로 null
+  console.log('name     : ', id.getAttribute('name'));
+  console.log('id       : ', id.getAttribute('id'));
+  console.log('class    : ', id.getAttribute('class'));
+  console.log('readonly : ', id.getAttribute('readonly'));  // readonly 속성의 값이 없으므로 빈 문자열
+
+  // attribute 수정하기
+  id.setAttribute('name', 'user-id');  // name="id" -> name="user-id"
+  id.setAttribute('value', 'admin');   // value="admin"
+
+  // attribute 삭제하기
+  id.removeAttribute('readonly');
+  id.removeAttribute('value');
+
+</script>
+<hr>
 
 <!--
     DOM property
@@ -202,6 +241,33 @@
       1) 객체.property
       2) 객체['property']
 -->
+<h4>Property 속성</h4>
+<div>
+  <!-- type="text" 는 생략이 가능한 디폴트 속성 -->
+  <input name="pw" id="pw" class="inp" readonly>
+</div>
+<script>
+
+  // 객체 pw 가 가진 속성(Property)은 태그 속성(Attribute) 보다 우선 연습한다.
+
+  const pw = document.getElementById('pw');
+
+  // property 확인
+  console.log('type     : ', pw.type);      // pw['type']
+  console.log('name     : ', pw.name);      // pw['name']
+  console.log('id       : ', pw.id);        // pw['id']
+  console.log('class    : ', pw.className); // pw['className']
+  console.log('readonly : ', pw.readOnly);  // pw['readOnly']
+
+  // property 수정
+  pw.name = 'user-pw';
+  pw.type = 'password';
+  pw.value = '1234';
+
+  // DOM 객체 속성은 삭제하지 않는다.
+  delete pw.readOnly;  // 동작 안 함
+
+</script>
 
 <!--
     HTML Attribute vs DOM Property
@@ -261,7 +327,7 @@
     else if(average >= 60) grade = 'D';
     else                   grade = 'F';
     document.getElementById('average').textContent = average;
-    document.getElementById('grade').textContent = grade;
+    document.getElementById('grade').innerHTML = '<strong>' + grade + '</strong>';
   }
   printScores(getScores());
 </script>
