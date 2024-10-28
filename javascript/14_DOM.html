@@ -491,7 +491,7 @@
       1 ~ 10 사이의 정수 난수를 구하는 getRandomIntInclusive() 함수를 함께 사용
   */
 
-  // getRandomIntInclusive 함수
+  // getRandomIntInclusive 함수 (min <= random <= max)
   const getRandomIntInclusive = (min, max) => {
     return Math.floor(Math.random() * (max - min + 1) + min);
   }
@@ -562,9 +562,9 @@
       2) 임의의 rgba(red, green, blue, opacity) 색상 함수를 만들어 반환하는 getRandomRgba() 함수를 만들어서 사용
   */
 
-  // min <= random < min
+  // min <= random < max
   const getRandomInt = (min, max) => {
-    return Math.random() * (max - min) + min;
+    return Math.floor(Math.random() * (max - min) + min);
   }
 
   const imageCover = () => {
@@ -628,9 +628,18 @@
         }
       ]
     }
-
+    let str = '';
+    movies.items.forEach(movie => {
+      str += '<tr>';
+      str += '<td>' + movie.no + '</td>';
+      str += '<td><img src="' + movie.thumbnail + '" width="50px"></td>';
+      str += '<td>' + movie.title + '</td>';
+      str += '<td>' + movie.director + '</td>';
+      str += '</tr>';
+    })
+    document.getElementById('movies').innerHTML = str;
   }
-  
+  getMovies();
 </script>
 <hr>
 

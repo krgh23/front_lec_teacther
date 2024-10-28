@@ -61,7 +61,7 @@
     1. 이벤트 할당을 위해서 이벤트 핸들러 프로퍼티(Event Handler Property)를 활용하는 방법이다.
     2. 이벤트 종류 앞에 "on" 키워드를 붙이면 이벤트 핸들러 프로퍼티가 완성된다.
       예) onclick, onkeydown, onsubmit, onfocus 등
-    3. 하나의 이벤트에 하나의 이벤트 리스너를 할당할 수 있다.
+    3. 하나의 이벤트에 하나의 이벤트 리스너를 할당할 수 있다. (마지막에 등록한 이벤트 리스너만 동작한다.)
     4. 이벤트 할당 방식 예시
       1) 익명 함수
         const button = document.getElementById('button');
@@ -80,6 +80,50 @@
         }
         button.onclick = eventHandler;
 -->
+<h4>고전 이벤트 모델</h4>
+<div>
+  <div id="box1">box1</div>
+  <div><button type="button" id="btn1">btn1</button></div>
+</div>
+<div>
+  <div id="box2">box2</div>
+  <div><button type="button" id="btn2">btn2</button></div>
+</div>
+<script>
+
+  /* 고전 이벤트 모델 동작 확인 */
+
+  const box1 = document.getElementById('box1');
+  const btn1 = document.getElementById('btn1');
+
+  // 이벤트 종류 : type 속성, click
+  // 이벤트 속성 : onclick
+  // 이벤트 대상 : target 속성, btn1
+  // 이벤트 리스너 (이벤트 핸들러) : function(event) { }
+  // 이벤트 객체 : 이벤트 리스너의 매개변수 event
+  btn1.onclick = function(event) {
+    box1.textContent = '이벤트 종류 : ' + event.type;
+    box1.textContent += ', 이벤트 대상 : ' + event.target.textContent;
+  }
+
+  /* 이벤트 리스너 등록 확인 */
+
+  const box2 = document.getElementById('box2');
+  const btn2 = document.getElementById('btn2');
+
+  function do1(event) {
+    box2.textContent += '이벤트 종류 : ' + event.type;
+  }
+  function do2(event) {
+    box2.textContent += '이벤트 대상 : ' + event.target.textContent;
+  }
+  btn2.onclick = function(evt) {
+    do1(evt);
+    do2(evt);
+  }
+
+</script>
+<hr>
 
 <!--
     표준 이벤트 모델
@@ -107,6 +151,27 @@
         }
         button.addEventListener('click', eventHandler);
 -->
+<h4>표준 이벤트 모델</h4>
+<div>
+  <div id="box3">box3</div>
+  <div><button type="button" id="btn3">btn3</button></div>
+</div>
+<script>
+
+  /* 표준 이벤트 모델 동작 확인 */
+
+  const box3 = document.getElementById('box3');
+  const btn3 = document.getElementById('btn3');
+
+  btn3.addEventListener('click', function(event) {
+    box3.textContent += '이벤트 타입 : ' + event.type;
+  })
+  btn3.addEventListener('click', function(event) {
+    box3.textContent += '이벤트 대상 : ' + event.target.textContent;
+  })
+
+</script>
+<hr>
 
 <!--
     인라인 이벤트 모델
@@ -118,6 +183,21 @@
 
       }
 -->
+<h4>인라인 이벤트 모델</h4>
+<div>
+  <div id="box4">box4</div>
+  <div><button type="button" id="btn4" onclick="fnInline(event)">btn4</button></div>
+</div>
+<script>
+
+  const box4 = document.getElementById('box4');
+
+  function fnInline(event) {
+    box4.textContent = '이벤트 종류 : ' + event.type;
+  }
+
+</script>
+<hr>
 
 <!--
     이벤트 전파
