@@ -458,7 +458,29 @@
       1) D-Day 까지 남은 시간을 밀리초 단위로 구한다.(디데이 - 현재 날짜)
       2) 밀리초로 계산된 남은 시간을 일,시,분,초 단위로 변환한 뒤 출력한다.
   */
-
+  const displayDday = (dday) => {
+    const now = new Date();
+    const remainMillis = dday.getTime() - now.getTime();  // 두 날짜 사이의 밀리초 계산 (getTime() 메소드 호출 생략 가능)
+    const remainSeconds = parseInt(remainMillis / 1000);  // 계산된 밀리초를 초 단위로 변환
+    let msg = 'D-DAY ';
+    if(remainSeconds < 0) {
+      msg += '가 지났습니다.';
+    } else {
+      const day = parseInt(remainSeconds / 60 / 60 / 24);
+      const hour = parseInt(remainSeconds / 60 / 60) % 24;
+      const minute = parseInt(remainSeconds / 60) % 60;
+      const second = remainSeconds % 60;
+      if(day >= 1) {
+        msg += day + '일 ' + String(hour).padStart(2, '0') + ':' + String(minute).padStart(2, '0') + ':' + String(second).padStart(2, '0');
+      } else {
+        msg += String(hour).padStart(2, '0') + ':' + String(minute).padStart(2, '0') + ':' + String(second).padStart(2, '0');
+      }
+    }
+    document.getElementById('d-day').innerHTML = msg;
+  }
+  setInterval(() => {
+    displayDday(new Date(2030, 0, 1))  // 2030-01-01
+  }, 1000);
 </script>
 <hr>
 
