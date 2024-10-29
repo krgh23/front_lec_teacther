@@ -229,15 +229,54 @@
   const parent = document.getElementById('parent');
   const child = document.getElementById('child');
   
-  ancestor.addEventListener('click', function(event) {
-    alert(`최초 이벤트 발생 : ${event.target.id}, 현재 이벤트 발생 : ${event.currentTarget.id}`);
+  ancestor.addEventListener('click', (event) => {
+    alert(`최초 이벤트 발생 : ${event.target.id}, 현재 이벤트 발생 : ${event.currentTarget.id}, this : ${this.id}`);
   })
-  parent.addEventListener('click', function(event) {
-    alert(`최초 이벤트 발생 : ${event.target.id}, 현재 이벤트 발생 : ${event.currentTarget.id}`);
+  parent.addEventListener('click', (event) => {
+    alert(`최초 이벤트 발생 : ${event.target.id}, 현재 이벤트 발생 : ${event.currentTarget.id}, this : ${this.id}`);
+    // event.stopPropagation();  ancestor 로 이벤트가 전파되는 것을 막는 코드
   })
-  child.addEventListener('click', function(event) {
-    alert(`최초 이벤트 발생 : ${event.target.id}, 현재 이벤트 발생 : ${event.currentTarget.id}`);
+  child.addEventListener('click', (event) => {
+    alert(`최초 이벤트 발생 : ${event.target.id}, 현재 이벤트 발생 : ${event.currentTarget.id}, this : ${this.id}`);
   })
+
+</script>
+<hr>
+
+<!--
+    this
+    1. 어떤 함수를 호출하는 객체를 의미한다.
+    2. 함수 호출 방식에 따라서 this 객체가 달라진다.
+      1) 전역 함수, 콜백 함수, 내부 함수 : window 전역 객체
+      2) 객체의 프로퍼티에 저장된 함수   : 해당 객체
+    3. JavaScript 의 함수는 매개변수로 전달되는 인자 이외에 암묵적으로 this 를 전달 받는다.
+-->
+<h4>this</h4>
+<script>
+
+  // 전역 함수
+  function fnGlobal() {
+    console.log(this);
+  }
+  fnGlobal();
+
+  // 콜백 함수
+  function fnCallback(callback) {
+    callback();
+  }
+  fnCallback(function() {
+    console.log(this);
+  })
+
+  // 객체에 포함된 함수
+  const car = {
+    model: 'x5',
+    drive: function() {
+      console.log(this);  // this 는 car 객체를 의미한다.
+      console.log(this.model + ' 타고 드라이브');  // this.model 은 car.model 을 의미한다.
+    }
+  }
+  car.drive();
 
 </script>
 
