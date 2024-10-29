@@ -250,6 +250,8 @@
       1) 전역 함수, 콜백 함수, 내부 함수 : window 전역 객체
       2) 객체의 프로퍼티에 저장된 함수   : 해당 객체
     3. JavaScript 의 함수는 매개변수로 전달되는 인자 이외에 암묵적으로 this 를 전달 받는다.
+    4. 화살표 함수는 this 에 자체 바인딩이 포함되지 않는다.
+    5. 이벤트 핸들러가 화살표 함수인 경우 this 는 사용하지 않는다.
 -->
 <h4>this</h4>
 <script>
@@ -274,19 +276,73 @@
     drive: function() {
       console.log(this);  // this 는 car 객체를 의미한다.
       console.log(this.model + ' 타고 드라이브');  // this.model 은 car.model 을 의미한다.
+    },
+    parking: () => {
+      console.log(this);  // 화살표 함수는 this 에 car 객체를 바인딩하지 못한다.
+      console.log(this.model + ' 주차 중');
     }
   }
   car.drive();
+  car.parking();
 
 </script>
-
+<hr>
 
 <!-- 
     이벤트 위임 (Event Delegation)
-    1. 자식에게 할당된 이벤트는 부모에게 전파된다.
+    1. 자식에게 할당된 이벤트는 부모에게 전파된다. (이벤트 버블링)
     2. 자식이 처리해야 할 이벤트를 의도적으로 부모가 처리하게끔 만들 수 있다. 이를 이벤트 위임이라고 한다.
     3. 대표적으로 모든 자식들에게 반복해서 여러 번 할당해야 할 이벤트를 최상위 조상에게 한 번만 할당하는 방식이 있다.
 -->
+<h4>이벤트 위임</h4>
+<style>
+  table {
+    border-collapse: collapse;
+  }
+  table td {
+    width: 100px;
+    height: 100px;
+    border: 1px solid green;
+    text-align: center;
+  }
+  .selected-td {
+    background-color: antiquewhite;
+  }
+</style>
+<table id="table">
+  <tbody>
+    <tr>
+      <td>APT</td>
+      <td>Banana</td>
+      <td>City</td>
+    </tr>
+    <tr>
+      <td>Drama</td>
+      <td>Eiffel</td>
+      <td>Fuel</td>
+    </tr>
+    <tr>
+      <td>Giant</td>
+      <td>Hidden</td>
+      <td>Ivy</td>
+    </tr>
+  </tbody>
+</table>
+<script>
+
+  const table = document.getElementById('table');
+
+  let selectedTd;
+  table.addEventListener('click', function(event) {
+    const td = event.target;  // 클릭한 <td>
+    if(selectedTd !== undefined)  // if(selectedTd) 코드와 같음, 첫 클릭이 아니라면
+      selectedTd.classList.remove('selected-td');             // 이전에 선택한 <td> 해제
+    selectedTd = td;          // 선택한 <td>
+    selectedTd.classList.add('selected-td');
+  })
+
+</script>
+<hr>
 
 <!--
     디폴트 이벤트
