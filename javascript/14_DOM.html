@@ -287,6 +287,21 @@
     checked 속성 |  checked="checked" |  checked: true
 -->
 
+<div>
+  <input type="radio" name="gender" id="man" value="man" checked="checked">
+  <label for="man">남자</label>
+  <input type="radio" name="gender" id="woman" value="woman">
+  <label for="woman">여자</label>
+</div>
+<script>
+  const man = document.getElementById('man');
+  man.removeAttribute('checked');
+  const woman = document.getElementById('woman');
+  // woman.setAttribute('checked', 'checked');
+  woman.checked = true;
+</script>
+<hr>
+
 
 
 <!-- 문제1. printScores() 함수 구현하기 -->
