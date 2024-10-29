@@ -437,9 +437,19 @@
   // 버튼을 누를때마다 ON/OFF 버튼 텍스트와 lightOn.png/lightOff.png 이미지를 변환하도록 구현하시오.
 
   const switchBtn = document.getElementById('switch-btn');
+  const light = document.getElementById('light');
 
   switchBtn.addEventListener('click', function(event) {
-    alert(event.currentTarget.dataset.power);
+    const btn = event.currentTarget;
+    if(btn.textContent === 'ON') {  // if(btn.dataset.power === 'on')
+      light.className = 'light-off';
+      btn.dataset.power = 'off';
+      btn.textContent = 'OFF';
+    } else {
+      light.className = 'light-on';
+      btn.dataset.power = 'on';
+      btn.textContent = 'ON';
+    }
   })
 
 </script>
@@ -455,10 +465,27 @@
   }
 </style>
 <div>
-  <input type="password" id="pw"><span id="eye" class="eye"><i class="fa-regular fa-eye-slash"></i></span>
+  <input type="password" id="pw">
+  <span id="eye" class="eye">
+    <i class="fa-regular fa-eye-slash"></i>
+  </span>
 </div>
 <script>
+  
   // 아이콘을 클릭할때마다 입력한 비밀번호를 보여주거나 숨기도록 구현하시오.
+
+  const pw = document.getElementById('pw');
+  const icon = document.querySelector('#eye > i');
+  
+  icon.addEventListener('click', function(event) {
+    if(icon.className.indexOf('fa-eye-slash') !== -1) {  // class 속성에 fa-eye-slash 가 포함되어 있으면
+      icon.className = 'fa-regular fa-eye';
+      pw.type = 'text';
+    } else {
+      icon.className = 'fa-regular fa-eye-slash';
+      pw.type = 'password';
+    }
+  })
 
 </script>
 <hr>
