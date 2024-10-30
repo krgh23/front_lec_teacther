@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
-  <script src="../assets/lib/jquery-3.7.1.min.js"></script>
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/js-cookie/3.0.5/js.cookie.min.js" integrity="sha512-nlp9/l96/EpjYBx7EP7pGASVXNe80hGhYAUrjeXnu/fyF5Py0/RXav4BBNs7n5Hx1WFhOEOWSAVjGeC3oKxDVQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 </head>
 <body>
@@ -66,6 +66,7 @@
   <input type="text" id="parent" placeholder="팝업창으로 전송할 메시지">
   <button type="button" id="send-btn">전송</button>
 </div>
+<div id="child-msg"></div>
 <script>
 
   // 전역 변수
@@ -99,7 +100,16 @@
   }
 
   const sendPopup = () => {
-    팝업창 parent-msg = window.document.getElementById('parent').value;
+
+    /*
+      popup.document.getElementById('parent-msg') 인식을 위해서
+      popup 창의 본문의 모든 코드를 읽은 뒤 처리하는 load 이벤트가 필요하다.
+    */
+
+    popup.onload = function(event) {
+      popup.document.getElementById('parent-msg').textContent = window.document.getElementById('parent').value;
+    }
+
   }
 
   const openBtn = document.getElementById('open-btn');
@@ -107,6 +117,7 @@
   const sendBtn = document.getElementById('send-btn');
   openBtn.addEventListener('click', openPopup);
   closeBtn.addEventListener('click', closePopup);
+  sendBtn.addEventListener('click', openPopup);
   sendBtn.addEventListener('click', sendPopup);
 
 </script>
