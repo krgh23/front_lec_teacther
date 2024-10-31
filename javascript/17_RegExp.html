@@ -305,7 +305,7 @@
 
 <!-- 2. 회원 가입 -->
 <h4>회원 가입 화면</h4>
-<form method="post" action="/user/signup.do">
+<form id="signup-form" method="post" action="/user/signup.do">
   <div><input type="text" placeholder="example@naver.com" id="user-email"></div>
   <div><input type="password" placeholder="비밀번호" id="user-pwd"></div>
   <div><button type="submit">Sign Up</button></div>
@@ -315,6 +315,28 @@
   // 아래 정규식을 통과하지 못하면 회원 가입을 못하도록 submit 을 방지하시오.
   // 아이디   : 이메일을 아이디로 활용
   // 비밀번호 : 4자 이상, 영문/숫자/특수문자 사용 가능
+
+  const signupForm = document.getElementById('signup-form');
+  const userEmail = document.getElementById('user-email');
+  const userPwd = document.getElementById('user-pwd');
+
+  signupForm.addEventListener('submit', function(event) {
+
+    const regEmail = /^[A-Za-z0-9-_]+@[A-Za-z0-9]+([.][A-Za-z]{2,6}){1,2}$/;
+    const regPwd = /^[A-Za-z0-9!@#$%^&*()]{4,}$/;
+
+    if(regEmail.test(userEmail.value) === false) {
+      alert('입력된 이메일을 확인하세요.');
+      event.preventDefault();  // 서브밋 방지
+      return;                  // 이벤트 핸들러 중지
+    } else if(regPwd.test(userPwd.value) === false) {
+      alert('입력된 비밀번호를 확인하세요.');
+      event.preventDefault();
+      return;
+    }
+
+  })
+  
 
 </script>
 <hr>
