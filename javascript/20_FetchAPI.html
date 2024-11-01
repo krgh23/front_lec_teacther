@@ -176,6 +176,24 @@
     3. async 함수가 아닌 곳에서 사용하면 SyntaxError 가 발생한다.
     4. await 문이 없는 async 함수는 일반 함수처럼 동기적으로 실행된다.
 -->
+<h4>async 함수와 await 문</h4>
+<div>
+  <button type="button" id="async-btn">async</button>
+</div>
+<script>
+
+  async function asyncDeclare() {
+    // fetch 수행 결과를 받아올때까지 기다렸다가 실행된다.
+    const response = await fetch('https://thetestrequest.com/authors/1.xml', { method: 'GET' });
+    const responseData = await response.text();
+    const xmlDocument = new DOMParser().parseFromString(responseData, 'application/xml');
+    console.log(xmlDocument);
+  }
+
+  document.getElementById('async-btn').addEventListener('click', asyncDeclare);
+
+</script>
+<hr>
 
 
 
@@ -245,6 +263,36 @@
       async 함수와 await 문을 반드시 사용하시오.
   */
   
+  /*
+  const form = new FormData();     // <form></form>
+  form.append('username', 'kim');  // <form><input name="username" value="kim"></form>
+  */
+
+  async function upload() {
+
+    const username = document.getElementById('username').value;
+    const profile = document.getElementById('profile').files[0];
+
+    const form = new FormData();
+    form.append('username', username);
+    form.append('profile', profile);
+
+    const response = await fetch('/user/profileUpload.do', {
+      method: 'POST',
+      body: form,
+    })
+
+    const responseData = await response.json();
+    if(responseData.isSuccess) {
+      alert('프로필이 업로드되었습니다.');
+    } else {
+      alert('프로필이 업로드 되지 않았습니다.');
+    }
+
+  }
+
+  document.getElementById('upload-btn').addEventListener('click', upload);
+
 </script>
 <hr>
 
