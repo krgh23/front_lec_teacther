@@ -226,6 +226,31 @@
           .then((finalResult) => { finalResult 처리 })
           .catch((error) => { error 처리 })
 -->
+<h4>then() 메소드 연결</h4>
+<div>
+  <button type="button" onclick="methodChain()">체이닝</button>
+</div>
+<script>
+
+  const methodChain = () => {
+
+    new Promise((resolve, reject) => {
+      const xhr = new XMLHttpRequest();
+      const method = 'GET';
+      const url = 'https://thetestrequest.com/authors/1';
+      xhr.open(method, url);
+      xhr.addEventListener('load', function(event) {
+        resolve(JSON.parse(xhr.responseText));
+      })
+      xhr.send();
+    }).then(responseData => responseData.name)
+      .then(name => name + '님')
+      .then(authorName => console.log(authorName));
+
+  }
+  
+</script>
+<hr>
 
 
 
@@ -236,7 +261,22 @@
   <button type="button" onclick="fakeApi('https://thetestrequest.com/authors/2')">authors 2</button>
 </div>
 <script>
-
+  const fakeApi = (url) => {
+    new Promise((resolve, reject) => {
+      const xhr = new XMLHttpRequest();
+      const method = 'GET';
+      xhr.open(method, url);
+      xhr.addEventListener('load', function(event) {
+        resolve(JSON.parse(xhr.responseText));
+      })
+      xhr.addEventListener('error', function(event) {
+        reject(xhr.status);
+      })
+      xhr.send();
+    })
+    .then(responseData => console.log(responseData))
+    .catch(status => console.log(status))
+  }
 </script>
 <hr>
 
@@ -248,6 +288,26 @@
   <button type="button" id="get-info-btn">getInfo</button>
 </div>
 <script>
+
+  const getInfo = (url, method) => {
+    return new Promise((resolve, reject) => {
+      const xhr = new XMLHttpRequest();
+      xhr.open(method, url);
+      xhr.addEventListener('load', function(event) {
+        resolve(JSON.parse(xhr.responseText));
+      })
+      xhr.addEventListener('error', function(event) {
+        reject(xhr.status);
+      })
+      xhr.send();
+    });
+  }
+
+  document.getElementById('get-info-btn').addEventListener('click', function(event) {
+    getInfo('https://thetestrequest.com/authors/1', 'GET')
+      .then(responseData => console.log(responseData))
+      .catch(status => console.log(status));
+  })
 
 </script>
 <hr>
